@@ -40,6 +40,7 @@ jobs:
     uses: cross-org/workflows/.github/workflows/node-ci.yml@main
     with:
       jsr_dependencies: "@cross/test @std/assert"
+      test_target: "*.test.ts" # Optional
 ```
 
 2. **Customize (Optional):** Reusable workflows can accept inputs to tailor

@@ -15,7 +15,7 @@ on:
         description: 'Target path for tests, example: *.test.ts'
         required: true
         type: string 
-        default: *.test.ts
+        default: "*.test.ts"
 jobs:
   node_ci:
     runs-on: ubuntu-latest
