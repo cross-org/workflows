@@ -34,11 +34,11 @@ jobs:
   bun_ci:
     uses: cross-org/workflows/.github/workflows/bun-ci.yml@main
     with:
-      jsr_dependencies: @cross/test @std/assert
+      jsr_dependencies: "@cross/test @std/assert"
   node_ci:
     uses: cross-org/workflows/.github/workflows/node-ci.yml@main
     with:
-      jsr_dependencies: @cross/test @std/assert
+      jsr_dependencies: "@cross/test @std/assert"
 ```
 
 2. **Customize (Optional):** Reusable workflows can accept inputs to tailor
