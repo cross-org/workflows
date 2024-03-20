@@ -13,7 +13,6 @@ on:
         type: string 
       test_target:
         description: 'Target path for tests, example: *.test.ts'
-        required: true
         type: string 
         default: "*.test.ts"
 jobs:
