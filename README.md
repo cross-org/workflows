@@ -15,22 +15,10 @@ designed to streamline CI/CD practices across your (but primarily our) projects.
 
 ## How to Use
 
-1. **Reference the Workflow:** In your project's `.github/workflows` directory,
-   create a new workflow file. Use the following syntax to reference a reusable
-   workflow from this repository:
-
-```yaml
-uses: cross-org/workflows/<workflow-file>.yml@main
-```
-
-Replace `<workflow-file>` with the actual filename (e.g., `bun-ci.yml`).
-
-### Integrating a part of a reusable workflow in your workflow
-
 In your project's `.github/workflows/my-deno-workflow.yml`:
 
 ```yaml
-name: My Project's Deno CI
+name: My Project's Testing CI
 
 on: 
   push:
@@ -41,6 +29,16 @@ on:
 jobs:
   deno_ci:
     uses: cross-org/workflows/deno-ci.yml@main
+    with:
+      entrypoint: mod.ts
+  bun_ci:
+    uses: cross-org/workflows/bun-ci.yml@main
+    with:
+      jsr_dependencies: @cross/test @std/assert
+  node_ci:
+    uses: cross-org/workflows/node-ci.yml@main
+    with:
+      jsr_dependencies: @cross/test @std/assert
 ```
 
 2. **Customize (Optional):** Reusable workflows can accept inputs to tailor

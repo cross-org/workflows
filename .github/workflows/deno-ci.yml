@@ -4,7 +4,11 @@ name: Deno CI
 
 on:
   workflow_call:
-
+    inputs:
+      entrypoint:
+        description: 'Entrypoint javascript file'
+        required: true
+        type: string 
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -25,10 +29,10 @@ jobs:
         run: deno lint
 
       - name: Check types
-        run: deno check mod.ts
+        run: deno check ${{ inputs.entrypoint }} 
 
       - name: Lint the docs
-        run: deno doc --lint mod.ts
+        run: deno doc --lint ${{ inputs.entrypoint }} 
 
       - name: Run tests
         run: deno test

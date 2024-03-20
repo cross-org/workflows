@@ -3,15 +3,19 @@ name: Bun CI
 
 on:
   workflow_call:
-
+    inputs:
+      jsr_dependencies:
+        description: 'Space-separated list of dependencies to install'
+        required: true
+        type: string 
 
 jobs:
   bun_ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: antongolub/action-setup-bun@v1.12.8 
         with:
           bun-version: v1.x # Uses latest bun 1
-      - run: bun x jsr add @cross/test @std/assert # Installs dependencies
+      - run: bun x jsr add ${{ inputs.jsr_dependencies }}  # Installs dependencies
       - run: bun test # Runs the tests
