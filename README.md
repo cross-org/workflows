@@ -15,10 +15,10 @@ designed to streamline CI/CD practices across your (but primarily our) projects.
 
 ## How to Use
 
-In your project's `.github/workflows/my-deno-workflow.yml`:
+In your project's `.github/workflows/testing-ci.yml`:
 
 ```yaml
-name: My Project's Testing CI
+name: Testing CI
 
 on: 
   push:
@@ -41,6 +41,20 @@ jobs:
     with:
       jsr_dependencies: "@cross/test @std/assert"
       test_target: "*.test.ts" # Optional
+```
+
+In your project's `.github/workflows/jsr-publish.yml`:
+
+```yaml
+name: Publish to jsr.io
+on:
+  release:
+    types: [released]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    uses: cross-org/workflows/.github/workflows/jsr-publish.yml@main
 ```
 
 2. **Customize (Optional):** Reusable workflows can accept inputs to tailor
