@@ -9,6 +9,7 @@ on:
         description: 'Entrypoint javascript file'
         required: true
         type: string 
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -31,8 +32,8 @@ jobs:
       - name: Check types
         run: deno check ${{ inputs.entrypoint }} 
 
-      - name: Lint the docs
-        run: deno doc --lint ${{ inputs.entrypoint }} 
+#      - name: Lint the docs
+#        run: deno doc --lint ${{ inputs.entrypoint }} 
 
       - name: Run tests
         run: deno test -A

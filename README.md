@@ -54,6 +54,9 @@ on:
 
 jobs:
   publish:
+    permissions:
+      contents: read
+      id-token: write
     uses: cross-org/workflows/.github/workflows/jsr-publish.yml@main
 ```
 
