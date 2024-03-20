@@ -35,4 +35,4 @@ jobs:
         run: deno doc --lint ${{ inputs.entrypoint }} 
 
       - name: Run tests
-        run: deno test
+        run: deno test -A
