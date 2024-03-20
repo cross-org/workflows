@@ -1,0 +1,21 @@
+# Reusable workflow for testing something using
+name: Bun CI
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+  workflow_dispatch:
+
+
+jobs:
+  bun_ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: antongolub/action-setup-bun@v1.12.8 
+        with:
+          bun-version: v1.x # Uses latest bun 1
+      - run: bun x jsr add @cross/test @std/assert # Installs dependencies
+      - run: bun test # Runs the tests

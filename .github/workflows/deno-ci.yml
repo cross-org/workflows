@@ -1,0 +1,38 @@
+# Reusable workflow for testing something using Deno
+# - Checks formatting, linting and 
+name: Deno CI
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      
+      - name: Verify formatting
+        run: deno fmt --check
+
+      - name: Run linter
+        run: deno lint
+
+      - name: Check types
+        run: deno check mod.ts
+
+      - name: Lint the docs
+        run: deno doc --lint
+
+      - name: Run tests
+        run: deno test
