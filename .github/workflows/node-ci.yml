@@ -22,7 +22,7 @@ jobs:
       matrix:
         node-version: [18.x, 21.x]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: npx jsr add ${{ inputs.jsr_dependencies }} 
       - run: "echo '{ \"type\": \"module\" }' > package.json" # Needed for tsx to work
       - run: npx --yes tsx --test ${{ inputs.test_target }}

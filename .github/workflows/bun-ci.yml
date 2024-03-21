@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: antongolub/action-setup-bun@v1.12.8 
+      - uses: antongolub/action-setup-bun@v1.13.1 
         with:
           bun-version: v1.x # Uses latest bun 1
       - run: bun x jsr add ${{ inputs.jsr_dependencies }}  # Installs dependencies
