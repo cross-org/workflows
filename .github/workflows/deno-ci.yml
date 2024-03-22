@@ -42,3 +42,7 @@ jobs:
 
       - name: Run tests
         run: deno test -A
+
+      - name: Check Dependencies
+        continue-on-error: true
+        run: deno run -A jsr:@check/deps
