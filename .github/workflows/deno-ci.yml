@@ -13,7 +13,10 @@ on:
         description: 'Lint docs'
         default: true
         type: boolean 
-
+      run_tests:
+        description: 'Run tests'
+        default: true
+        type: boolean 
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -41,4 +44,5 @@ jobs:
         run: deno doc --lint ${{ inputs.entrypoint }} 
 
       - name: Run tests
+        if: ${{ inputs.run_tests }}
         run: deno test -A
