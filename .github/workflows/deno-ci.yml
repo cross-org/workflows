@@ -17,6 +17,10 @@ on:
         description: 'Run tests'
         default: true
         type: boolean 
+      allow_outdated:
+        description: 'Allow outdated deps'
+        default: true
+        type: boolean 
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -48,6 +52,6 @@ jobs:
         run: deno test -A
 
       - name: Check Dependencies
-        continue-on-error: true
+        continue-on-error: ${{ inputs.allow_outdated }}
         run: deno run -A jsr:@check/deps || echo "::warning title=Dependency Check::Some of the dependencies are out of date, please check."
 
