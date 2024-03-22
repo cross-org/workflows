@@ -49,5 +49,5 @@ jobs:
 
       - name: Check Dependencies
         continue-on-error: true
-        run: deno run -A jsr:@check/deps
+        run: deno run -A jsr:@check/deps || echo "::warning title=Dependency Check::Some of the dependencies are out of date, please check."
 
