@@ -8,6 +8,9 @@ on:
         description: 'Space-separated list of dependencies to install'
         required: true
         type: string 
+      npm_dependencies:
+        description: 'Space-separated list of dependencies to install from NPM'
+        type: string 
 
 jobs:
   bun_ci:
@@ -18,4 +21,7 @@ jobs:
         with:
           bun-version: v1.x # Uses latest bun 1
       - run: bun x jsr add ${{ inputs.jsr_dependencies }}  # Installs dependencies
+      - name: Install NPM Dependencies
+        if: ${{ inputs.npm_dependencies }}
+        run: npm install ${{ inputs.npm_dependencies }} 
       - run: bun test # Runs the tests
