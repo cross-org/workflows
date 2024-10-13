@@ -24,7 +24,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    
+    strategy:
+      matrix:
+        deno-version: [1.x, 2.x]
+        
     steps:
       - name: Setup repo
         uses: actions/checkout@v4
@@ -32,7 +36,7 @@ jobs:
       - name: Setup Deno
         uses: denoland/setup-deno@v2
         with:
-          deno-version: v1.x
+          deno-version: ${{ matrix.deno-version }}
       
       - name: Verify formatting
         run: deno fmt --check
